@@ -28,22 +28,24 @@ const Attachment = sequelize.define('Attachment', {
     allowNull: false
   },
   ticketId: {
-    type: DataTypes.INTEGER,
-    allowNull: false,
-    references: {
-      model: 'tickets',
-      key: 'id'
-    },
-    onDelete: 'CASCADE'
+  type: DataTypes.INTEGER,
+  allowNull: false,
+  references: {
+    model: 'tickets',
+    key: 'id'
   },
-  uploadedById: {
-    type: DataTypes.INTEGER,
-    allowNull: false,
-    references: {
-      model: 'users',
-      key: 'id'
-    }
-  }
+  onDelete: 'NO ACTION'
+},
+
+uploadedById: {
+  type: DataTypes.INTEGER,
+  allowNull: false,
+  references: {
+    model: 'users',
+    key: 'id'
+  },
+  onDelete: 'NO ACTION'
+}, 
 }, {
   tableName: 'attachments',
   timestamps: true

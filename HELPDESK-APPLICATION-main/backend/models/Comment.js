@@ -12,22 +12,24 @@ const Comment = sequelize.define('Comment', {
     allowNull: false
   },
   ticketId: {
-    type: DataTypes.INTEGER,
-    allowNull: false,
-    references: {
-      model: 'tickets',
-      key: 'id'
-    },
-    onDelete: 'CASCADE'
+  type: DataTypes.INTEGER,
+  allowNull: false,
+  references: {
+    model: 'tickets',
+    key: 'id'
   },
+  onDelete: 'NO ACTION'
+},
   userId: {
-    type: DataTypes.INTEGER,
-    allowNull: false,
-    references: {
-      model: 'users',
-      key: 'id'
-    }
+  type: DataTypes.INTEGER,
+  allowNull: false,
+  references: {
+    model: 'users',
+    key: 'id'
   },
+  onDelete: 'NO ACTION'
+},
+  
   isInternal: {
     type: DataTypes.BOOLEAN,
     defaultValue: false

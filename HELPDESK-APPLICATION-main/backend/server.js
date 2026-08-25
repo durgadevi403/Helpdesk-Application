@@ -56,7 +56,7 @@ initializeDatabase()
   .then(() => {
     console.log('[OK] Database connection established successfully.');
     console.log('Syncing database models...');
-    return sequelize.sync({ alter: true });
+    return sequelize.sync();
   })
   .then(() => {
     console.log('[OK] Database models synchronized.');
@@ -79,9 +79,18 @@ initializeDatabase()
     });
   })
   .catch((error) => {
-    console.error('[ERROR] Unable to connect to the database:', error.message);
-    process.exit(1);
-  });
+  console.error('[ERROR] Unable to connect to the database:');
+  console.error(error.message);
+
+  if (error.parent?.errors) {
+    console.error('SQL Server errors:');
+    error.parent.errors.forEach((err, index) => {
+      console.error(`Error ${index + 1}:`, err.message);
+    });
+  }
+
+  process.exit(1);
+});
 
 module.exports = app;
 

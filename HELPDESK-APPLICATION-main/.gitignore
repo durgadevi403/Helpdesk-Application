@@ -5,7 +5,7 @@ uploads/
 *.log
 .DS_Store
 dist/
-build/
+build/S
 .vscode/
 .idea/
 
